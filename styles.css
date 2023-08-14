@@ -1,0 +1,56 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+.container {
+
+}
+
+#game-field {
+	position: absolute;
+	border-radius: 30px;
+	padding: 10px;
+	margin: 50px 0 0 50px;
+	background-color: #FFF6DC;
+	box-shadow: 0px 0px 4px 4px #C4C1A4;
+}
+
+.btn-style {
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	margin: 2px;
+	box-shadow: 0px 1px 1px 1px #292929;
+}
+
+.btn-style:active {
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	margin: 2px;
+	box-shadow: 0px 0px 1px 1px #292929;
+}
+
+.btn1 {
+	background-color: #EBE76C;
+	border-color: #EBE76C;
+	color: #EBE76C;
+}
+
+.btn2 {
+	background-color: #F0B86E;
+	border-color: #F0B86E;
+	color: #F0B86E;
+}
+
+.btn3 {
+	background-color: #ED7B7B;
+	border-color: #ED7B7B;
+	color: #ED7B7B;
+}
+
+.btn4 {
+	background-color: #836096;
+	border-color: #836096;
+	color: #836096;
+}
