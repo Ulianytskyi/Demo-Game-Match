@@ -1,32 +1,50 @@
+const container = document.querySelector('.container');
 const gameField = document.getElementById('game-field');
+const infoField = document.querySelector('.info-field');
 const scoreField = document.getElementById('score-field');
+const turnField = document.getElementById('turn-field');
+const finalField = document.querySelector('.final-block');
+const finalTextField = document.querySelector('.final-text');
+const finalScoreField = document.getElementById('final-score');
+const startButton = document.getElementById('start');
 
 let field = [];
 let rows = 10;
 let cols = 6;
 let score = 0;
+let finalScore = 0;
+let turns = 100;
 let count = 0;
 let firstTile, secondTile;
 
 let gameFieldWidth = 54 * cols;
+infoField.style.width = gameFieldWidth + 'px';
 gameField.style.width = gameFieldWidth + 'px';
 
-window.onload = function () {
-	startGame();
+startButton.addEventListener('click', function() {
+	container.classList.remove("hide");
+	finalField.classList.add("hide");
+	startButton.classList.add("hide");
+	generateField();
+	// update();
+});
 
-	window.setInterval( function () {
+// update();
+
+function update() {
+	setInterval( function () {
 		checkMatch();
 		slideTiles();
 		generateTiles();
 	}, 200);
-
 }
 
 function randomTile() {
 	return Math.floor((Math.random() * 6) + 1);
 }
 
-function startGame() {
+function generateField() {
+	
 	for (let i = 0; i < rows; i++) {
 		let row = [];
 		for (let j = 0; j < cols; j++) {
@@ -39,6 +57,7 @@ function startGame() {
 		}
 		field.push(row);
 	}
+	
 }
 
 function handleMouseDown() {
@@ -50,8 +69,11 @@ function handleMouseDown() {
 		secondTile = this;
 		count--;
 		firstTile.classList.remove('selected');
-
+		turns -= 1;
+		turnField.innerHTML = `Turns: ${turns}`;
+		checkGameOver();
 		checkMove();
+		update();
 	}
 }
     
@@ -95,7 +117,7 @@ function checkMatch() {
 	matchFive();
 	matchFour();
 	matchThree();
-	scoreField.innerHTML = score;
+	scoreField.innerHTML = `Score: ${score}`;
 }
 
 function matchThree () {
@@ -206,7 +228,7 @@ function matchFive () {
 		}
 	}
 	for (let j = 0; j < cols; j++) {
-		for (let i = 0; i < rows - 44444; i++) {
+		for (let i = 0; i < rows - 4; i++) {
 			let tempTile1 = field[i][j];
 			let tempTile2 = field[i + 1][j];
 			let tempTile3 = field[i + 2][j];
@@ -284,3 +306,22 @@ function generateTiles() {
 		}
 	}
 }
+
+function checkGameOver() {
+	if (turns <= 0) {
+		container.classList.add("hide");
+		finalField.classList.remove("hide");
+		startButton.classList.remove("hide");
+		startButton.textContent = "Restart Game";
+		finalScore = score;
+		finalScoreField.innerHTML = `Total score: ${finalScore}`;
+		turns = 100;
+		score = 0;
+		while (gameField.firstChild) {
+		    gameField.removeChild(gameField.firstChild);
+		}
+		field = [];
+	}
+
+}
+

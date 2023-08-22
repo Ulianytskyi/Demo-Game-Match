@@ -1,16 +1,30 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demo Game: Match-3, vr.7</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟣</text></svg>">
+  <title>Demo Game: Match-3, vr.8</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟡</text></svg>">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div id="score-field">0</div>
-  <div id="game-field"></div>
+  <div class="container hide">
+    <div class="info-field">
+      <div id="score-field">Score: 0</div>
+      <div id="turn-field">Turns: 100</div>
+    </div>
+    <div id="game-field"></div>
+  </div>
+
+  <div class="final-block hide">
+      <h1 class="final-text">Game Over</h1>
+      <div id="final-score">Total score: 0</div>
+  </div>
+  <button id="start" class="btn">Start Game</button>
+
 
   <script type="text/javascript" src="script.js"></script>
 </body>
